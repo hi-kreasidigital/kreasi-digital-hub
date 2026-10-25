@@ -1,0 +1,404 @@
+import type { Lang, CategoryId } from './tools';
+
+interface ToolText { name: string; short?: string; desc: string }
+
+export interface Content {
+  meta: { title: string; description: string };
+  promo: { text: string; link: string };
+  nav: { tools: string; forWho: string; custom: string; how: string; faq: string; login: string; start: string; langLabel: string; home: string; menu: string };
+  hero: { eyebrow: string; title: string; lead: string; ctaPrimary: string; ctaSecondary: string; points: string[]; mockHello: string; mockSub: string; mockStates: Record<string, string>; mockAdd: string; mockAddLink: string };
+  journey: { eyebrow: string; title: string; lead: string };
+  catalog: { eyebrow: string; title: string; searchLabel: string; searchPlaceholder: string; all: string; showAll: (n: number) => string; showLess: string; empty: string; live: string; soon: string; learn: string; notify: string; typeTool: string };
+  how: { eyebrow: string; title: string; lead: string; steps: { title: string; text: string }[] };
+  industries: { eyebrow: string; title: string; lead: string; toolsFor: string; items: Record<string, { name: string; ex: string }> };
+  testimonials: { eyebrow: string; title: string; showAll: (n: number) => string; showLess: string; uses: string; items: { name: string; role: string; tool: string; text: string }[] };
+  featured: { eyebrow: string; title: string; screenshot: string; learn: string; login: string; desc: Record<string, string> };
+  custom: { eyebrow: string; title: string; lead: string; points: string[]; name: string; namePh: string; business: string; businessPh: string; options: string[]; need: string; needPh: string; submit: string; note: string; waIntro: string };
+  faq: { title: string; items: { q: string; a: string }[] };
+  other: { eyebrow: string; title: string; items: { title: string; tag: string; desc: string; cta: string; wa: string }[] };
+  finalCta: { title: string; lead: string; primary: string; secondary: string };
+  footer: { tools: string; company: string; help: string; contact: string; companyLinks: { label: string; href: string }[]; helpLinks: { label: string; href: string }[]; whatsapp: string; email: string; instagram: string; instagramSoon: string; copyright: string; tagline: string };
+  categories: Record<CategoryId, string>;
+  tools: Record<string, ToolText>;
+  wa: { notify: (tool: string) => string; learn: (tool: string) => string; login: string; hello: string };
+}
+
+const id: Content = {
+  meta: {
+    title: 'Kreasi Digital Hub — Online tools untuk kerja dan usaha',
+    description: 'Online tools praktis untuk urusan kerja dan usaha kamu: konten sosmed, kelola pelanggan, kasir, booking, sampai laporan keuangan. Sekali bayar, tanpa langganan.',
+  },
+  promo: { text: 'Harga perkenalan: online tools sekali bayar mulai [HARGA], berlaku sampai [TANGGAL].', link: 'Lihat cara kerjanya' },
+  nav: { tools: 'Online Tools', forWho: 'Untuk Siapa', custom: 'Custom', how: 'Cara Kerja', faq: 'FAQ', login: 'Masuk', start: 'Mulai dari sini', langLabel: 'Pilih bahasa', home: 'Kreasi Digital Hub, beranda', menu: 'Menu utama' },
+  hero: {
+    eyebrow: 'Multi tools platform · Kreasi Digital Hub',
+    title: 'Online tools praktis untuk urusan kerja dan usaha kamu.',
+    lead: 'Dari konten sosmed, kelola pelanggan, kasir, booking, sampai laporan keuangan. Semua dalam satu akun.',
+    ctaPrimary: 'Lihat semua tools',
+    ctaSecondary: 'Bantu saya memilih',
+    points: ['Sekali bayar, tanpa langganan', 'Satu akun untuk semua tools', 'Bisa dibuka dari HP'],
+    mockHello: 'Halo, Rina',
+    mockSub: 'Dashboard Kreasi Digital Hub · 4 tools aktif',
+    mockStates: { 'prospek-hub': '12 prospek aktif', 'nota-pos': 'Shift hari ini', 'content-planner': '3 posting minggu ini', 'akunting-umkm': 'Laporan Oktober' },
+    mockAdd: '+ Tambah tool lain ke dashboard',
+    mockAddLink: 'Buka katalog',
+  },
+  journey: {
+    eyebrow: 'Multi tools platform',
+    title: 'Dari konten sosmed sampai pembukuan rapi, ada alatnya di tiap titik.',
+    lead: 'Nggak harus semua sekaligus. Pilih satu tool yang paling kamu butuhkan minggu ini. Sisanya bisa menyusul.',
+  },
+  catalog: {
+    eyebrow: 'Katalog',
+    title: 'Tools lengkap untuk profesional dan bisnis',
+    searchLabel: 'Cari tool',
+    searchPlaceholder: 'mis. kasir, booking, invoice',
+    all: 'Semua',
+    showAll: (n) => `Lihat semua ${n} tools`,
+    showLess: 'Tampilkan lebih sedikit',
+    empty: 'Belum ada tool yang cocok. Coba kata lain, atau ceritakan kebutuhanmu di bagian Custom.',
+    live: 'Sudah bisa dipakai',
+    soon: 'Segera hadir',
+    learn: 'Pelajari',
+    notify: 'Kabari saya',
+    typeTool: 'Tool',
+  },
+  how: {
+    eyebrow: 'Cara kerjanya',
+    title: 'Bayar sekali, pakai seterusnya.',
+    lead: 'Tanpa tagihan bulanan. Semua tools yang kamu beli masuk ke satu dashboard dengan satu akun.',
+    steps: [
+      { title: 'Pilih tool', text: 'Baca penjelasannya dulu. Mulai dari satu yang paling kamu butuhkan.' },
+      { title: 'Bayar sekali', text: 'Satu kali pembayaran per tool, akses selamanya.' },
+      { title: 'Login dan pakai', text: 'Buka dari HP atau laptop, tanpa install aplikasi.' },
+    ],
+  },
+  industries: {
+    eyebrow: 'Untuk siapa',
+    title: 'Cocok untuk usaha kamu.',
+    lead: 'Tools yang paling dibutuhkan di tiap jenis usaha. Klik nama tool untuk melihat detailnya.',
+    toolsFor: 'Tools untuk',
+    items: {
+      'jasa-profesional': { name: 'Jasa Profesional', ex: 'Konsultan, freelancer, agensi, outsourcing, content creator' },
+      kuliner: { name: 'Kuliner & F&B', ex: 'Kafe, resto, rumah makan, catering' },
+      retail: { name: 'Retail & Perdagangan', ex: 'Toko, online seller, toko bangunan, apotek' },
+      grosir: { name: 'Grosir & Distributor', ex: 'Distributor, supplier, trading' },
+      kecantikan: { name: 'Kecantikan & Perawatan', ex: 'Salon, klinik kecantikan, pet grooming, laundry' },
+      kebugaran: { name: 'Kebugaran & Kelas', ex: 'Studio yoga, gym, kelas komunitas' },
+      kesehatan: { name: 'Kesehatan', ex: 'Klinik, praktik dokter' },
+      pendidikan: { name: 'Pendidikan', ex: 'Les privat, bimbel, lembaga kursus' },
+      kreatif: { name: 'Kreatif & Acara', ex: 'Fotografer, studio musik, WO, EO' },
+      otomotif: { name: 'Otomotif & Servis', ex: 'Bengkel, rental kendaraan, servis HP' },
+      properti: { name: 'Properti & Konstruksi', ex: 'Agen properti, kontraktor' },
+      produksi: { name: 'Produksi', ex: 'Manufaktur, konveksi, pertanian, perikanan' },
+      organisasi: { name: 'Organisasi', ex: 'Yayasan, NGO, komunitas, koperasi, BUMDes' },
+    },
+  },
+  testimonials: {
+    eyebrow: 'Cerita pengguna',
+    title: 'Cerita dari yang sudah pakai.',
+    showAll: (n) => `Lihat semua cerita (${n})`,
+    showLess: 'Tampilkan lebih sedikit',
+    uses: 'pakai',
+    // PLACEHOLDER — fictional examples from the wireframe. Replace with real stories before enabling flags.showTestimonials.
+    items: [
+      { name: 'Rina Anggraeni', role: 'Agen properti', tool: 'prospek-hub', text: 'Dulu prospek cuma ada di chat WhatsApp dan sering lupa follow-up. Sekarang tiap calon pembeli punya catatan sendiri, dan pengingatnya muncul tepat waktu.' },
+      { name: 'Budi Santoso', role: 'Pemilik kedai kopi', tool: 'nota-pos', text: 'Kasir jadi cepat, struk langsung keluar, dan stok biji kopi berkurang otomatis. Tutup shift nggak perlu hitung manual lagi.' },
+      { name: 'Dewi Lestari', role: 'Pemilik salon', tool: 'booking-hub', text: 'Jadwal pelanggan dan terapis nggak bentrok lagi. Pelanggan juga senang karena bisa pilih jam sendiri.' },
+      { name: 'Hendra Wijaya', role: 'Distributor sembako', tool: 'akunting-umkm', text: 'Laporan laba-rugi dan piutang akhirnya rapi tiap bulan. Saya bisa lihat posisi keuangan tanpa menunggu akhir tahun.' },
+      { name: 'Sari Puspita', role: 'Usaha laundry kiloan', tool: 'order-hub', text: 'Status cucian pelanggan bisa dicek kapan saja. Nggak ada lagi telepon tanya sudah selesai atau belum.' },
+      { name: 'Andi Firmansyah', role: 'Fotografer', tool: 'ulasan', text: 'Sekali kirim link lewat WhatsApp, klien langsung kasih ulasan. Sekarang website saya penuh testimoni asli.' },
+      { name: 'Maya Nirmala', role: 'Pemilik toko online', tool: 'order-chat', text: 'Pesanan dari chat langsung tercatat, dari bayar sampai dikirim. Nggak ada lagi pesanan yang terlewat di tengah ramai chat.' },
+      { name: 'Rizal Saputra', role: 'Pemilik bengkel motor', tool: 'servis', text: 'Setiap motor yang masuk punya catatan servis dan sparepart. Kalau pelanggan klaim garansi, datanya langsung ketemu.' },
+      { name: 'Lia Kurniasih', role: 'Content creator', tool: 'content-planner', text: 'Ide konten, jadwal posting, dan statusnya ada di satu tempat. Saya jadi konsisten posting tiap minggu.' },
+    ],
+  },
+  featured: {
+    eyebrow: 'Best-sellers',
+    title: 'Tools paling populer',
+    screenshot: 'Screenshot',
+    learn: 'Pelajari',
+    login: 'Sudah punya akses? Masuk',
+    desc: {
+      'prospek-hub': 'Catat tiap prospek, ingatkan follow-up, sampai tagihan lunas. Sales lihat datanya sendiri, pemilik usaha lihat semuanya.',
+      'nota-pos': 'Kasir di HP atau laptop: buka shift, checkout cepat, cetak struk, dan stok berkurang otomatis.',
+    },
+  },
+  custom: {
+    eyebrow: 'Custom',
+    title: 'Butuh fitur atau sistem khusus untuk usaha kamu?',
+    lead: 'Kalau alur kerjamu belum tertangani tools yang ada, ceritakan saja. Kami pelajari prosesnya, lalu kirim usulan fitur dan penawaran harga.',
+    points: ['Tambah fitur di tools yang sudah kamu pakai', 'Sistem baru sesuai alur kerja usahamu', 'Laporan atau dashboard dengan format khusus'],
+    name: 'Nama',
+    namePh: 'Nama kamu',
+    business: 'Jenis usaha',
+    businessPh: 'Pilih jenis usaha',
+    options: ['Jasa Profesional', 'Kuliner & F&B', 'Retail & Perdagangan', 'Grosir & Distributor', 'Kecantikan & Perawatan', 'Kebugaran & Kelas', 'Kesehatan', 'Pendidikan', 'Kreatif & Acara', 'Otomotif & Servis', 'Properti & Konstruksi', 'Produksi', 'Organisasi', 'Lainnya'],
+    need: 'Ceritakan kebutuhanmu',
+    needPh: 'Mis. kami butuh sistem antrean servis yang terhubung ke kasir',
+    submit: 'Kirim lewat WhatsApp',
+    note: 'Formulir ini membuka WhatsApp dengan pesan yang sudah terisi.',
+    waIntro: 'Halo Kreasi Digital Hub, saya butuh fitur/sistem custom.',
+  },
+  faq: {
+    title: 'Pertanyaan yang sering muncul',
+    items: [
+      { q: 'Sekali bayar itu maksudnya apa?', a: 'Kamu membayar satu kali untuk tiap tool dan bisa memakainya tanpa tagihan bulanan.' },
+      { q: 'Apakah perlu install aplikasi?', a: 'Tidak. Semua tools berbasis web dan bisa dibuka dari browser di HP maupun laptop.' },
+      { q: 'Satu akun bisa untuk beberapa tools?', a: 'Bisa. Semua tools yang kamu beli muncul di satu dashboard Kreasi Digital Hub.' },
+      { q: 'Kalau butuh fitur khusus untuk usahaku?', a: 'Ceritakan kebutuhanmu lewat formulir di bagian Custom. Kami pelajari alur kerjanya dan kirim penawaran.' },
+    ],
+  },
+  other: {
+    eyebrow: 'Produk lainnya',
+    title: 'Di luar online tools.',
+    items: [
+      { title: 'Custom Website', tag: 'Website', desc: 'Website untuk portfolio, online store, dan company profile, organisasi, atau yayasan. Dibuat sesuai kebutuhan dan mudah ditemukan di Google.', cta: 'Konsultasi website', wa: 'Halo Kreasi Digital Hub, saya ingin konsultasi Custom Website.' },
+      { title: 'AI Video Sosmed Generator', tag: 'AI · kredit', desc: 'Video pendek untuk media sosial, lengkap dengan hook, caption, dan CTA. Bayar per video dengan kredit.', cta: 'Coba AI Video', wa: 'Halo Kreasi Digital Hub, saya tertarik dengan AI Video Sosmed Generator.' },
+    ],
+  },
+  finalCta: {
+    title: 'Online tools praktis untuk urusan kerja dan usaha kamu.',
+    lead: 'Mulai dari satu tool, tambah yang lain kapan saja.',
+    primary: 'Bantu saya memilih',
+    secondary: 'Lihat katalog',
+  },
+  footer: {
+    tools: 'Online Tools',
+    company: 'Kreasi Digital Hub',
+    help: 'Bantuan',
+    contact: 'Kontak',
+    companyLinks: [{ label: 'Cara Kerja', href: '#cara-kerja' }, { label: 'Untuk Siapa', href: '#industri' }, { label: 'Produk lainnya', href: '#produk-lainnya' }],
+    helpLinks: [{ label: 'FAQ', href: '#faq' }, { label: 'Custom', href: '#custom' }],
+    whatsapp: 'WhatsApp',
+    email: 'Email',
+    instagram: 'Instagram',
+    instagramSoon: 'segera hadir',
+    copyright: '© 2026 Kreasi Digital Hub',
+    tagline: 'Dibuat dengan sepenuh hati untuk para profesional dan pemilik usaha.',
+  },
+  categories: { konten: 'Konten', pelanggan: 'Pelanggan & Penjualan', ops: 'Operasional', transaksi: 'Transaksi', ulasan: 'Ulasan & Testimoni', laporan: 'Laporan & Akunting' },
+  tools: {
+    'content-planner': { name: 'Content Planner', desc: 'Ide konten, jadwal posting, dan status tiap konten.' },
+    'prospek-hub': { name: 'Prospek Hub', desc: 'Leads management: prospek, follow-up, sampai lunas.' },
+    membership: { name: 'Membership', desc: 'Member, paket, dan masa aktif tanpa spreadsheet.' },
+    'order-chat': { name: 'Order & Chat Pelanggan', desc: 'Pesanan dari chat tercatat dari masuk sampai dikirim.' },
+    'booking-hub': { name: 'Booking Hub', desc: 'Booking, janji temu, jadwal staf, kelas, dan alat.' },
+    'order-hub': { name: 'Order Hub', desc: 'Pesanan, dapur, pickup, dan antar dalam satu alur.' },
+    stok: { name: 'Stok & Inventaris', desc: 'Barang masuk, keluar, dan sisa stok real-time.' },
+    servis: { name: 'Servis & Garansi', desc: 'Unit masuk, sparepart, status servis, dan garansi.' },
+    proyek: { name: 'Proyek & Klien', desc: 'Proyek, vendor, dan checklist acara per klien.' },
+    kelas: { name: 'Kelas & Siswa', desc: 'Jadwal, absensi, kurikulum, dan pembayaran les.' },
+    event: { name: 'Event & Tiket', desc: 'Jual tiket, data peserta, dan check-in.' },
+    'dashboard-tim': { name: 'Dashboard Tim Internal', desc: 'Tugas, progres, dan laporan mingguan tim.' },
+    'nota-pos': { name: 'Kasir Digital Nota POS', short: 'Kasir Digital', desc: 'Kasir, cetak struk, dan shift harian.' },
+    invoice: { name: 'Invoice & Pembayaran', desc: 'Invoice, PO, kuitansi, dan pengingat tagihan.' },
+    ulasan: { name: 'Permintaan Ulasan', desc: 'Kirim link lewat WhatsApp, kumpulkan rating dan cerita.' },
+    'testimonial-wall': { name: 'Testimonial Wall', desc: 'Tampilkan ulasan asli di website kamu.' },
+    'dashboard-laporan': { name: 'Dashboard Laporan', desc: 'Penjualan, pemasaran, dan performa dalam grafik.' },
+    'akunting-umkm': { name: 'Akunting UMKM', desc: 'Pembukuan otomatis, HPP, dan laporan keuangan.' },
+    'akunting-nirlaba': { name: 'Akunting Nirlaba ISAK 335', short: 'Akunting Nirlaba', desc: 'Laporan keuangan yayasan dan NGO.' },
+    'akunting-koperasi': { name: 'Akunting Koperasi & BUMDes', desc: 'Simpanan, pinjaman, dan SHU anggota.' },
+    donasi: { name: 'Pelacak Donasi & Kegiatan', desc: 'Donasi masuk dan laporan kegiatan untuk donatur.' },
+    'ai-video': { name: 'AI Video Sosmed Generator', desc: 'Video pendek untuk media sosial.' },
+  },
+  wa: {
+    notify: (t) => `Halo Kreasi Digital Hub, tolong kabari saya saat ${t} sudah tersedia.`,
+    learn: (t) => `Halo Kreasi Digital Hub, saya ingin tahu lebih lanjut tentang ${t}.`,
+    login: 'Halo Kreasi Digital Hub, saya ingin masuk ke dashboard tools saya.',
+    hello: 'Halo Kreasi Digital Hub',
+  },
+};
+
+const en: Content = {
+  meta: {
+    title: 'Kreasi Digital Hub — Online tools for work and business',
+    description: 'Practical online tools for your work and business: social media content, customers, cashier, bookings, all the way to financial reports. Pay once, no subscription.',
+  },
+  promo: { text: 'Launch price: one-time online tools from [PRICE], valid until [DATE].', link: 'See how it works' },
+  nav: { tools: 'Online Tools', forWho: 'Who It’s For', custom: 'Custom', how: 'How It Works', faq: 'FAQ', login: 'Log in', start: 'Start here', langLabel: 'Choose language', home: 'Kreasi Digital Hub, home', menu: 'Main menu' },
+  hero: {
+    eyebrow: 'Multi tools platform · Kreasi Digital Hub',
+    title: 'Practical online tools for your work and business.',
+    lead: 'From social media content, customers, cashier and bookings to financial reports. All in one account.',
+    ctaPrimary: 'See all tools',
+    ctaSecondary: 'Help me choose',
+    points: ['Pay once, no subscription', 'One account for every tool', 'Works on your phone'],
+    mockHello: 'Hi, Rina',
+    mockSub: 'Kreasi Digital Hub dashboard · 4 active tools',
+    mockStates: { 'prospek-hub': '12 active leads', 'nota-pos': 'Today’s shift', 'content-planner': '3 posts this week', 'akunting-umkm': 'October report' },
+    mockAdd: '+ Add another tool to your dashboard',
+    mockAddLink: 'Open catalog',
+  },
+  journey: {
+    eyebrow: 'Multi tools platform',
+    title: 'From social media content to tidy books, there’s a tool for every step.',
+    lead: 'You don’t need everything at once. Pick the one tool you need most this week. The rest can follow.',
+  },
+  catalog: {
+    eyebrow: 'Catalog',
+    title: 'A complete toolkit for professionals and businesses',
+    searchLabel: 'Search tools',
+    searchPlaceholder: 'e.g. cashier, booking, invoice',
+    all: 'All',
+    showAll: (n) => `See all ${n} tools`,
+    showLess: 'Show less',
+    empty: 'No matching tool yet. Try another word, or tell us what you need in the Custom section.',
+    live: 'Available now',
+    soon: 'Coming soon',
+    learn: 'Learn more',
+    notify: 'Notify me',
+    typeTool: 'Tool',
+  },
+  how: {
+    eyebrow: 'How it works',
+    title: 'Pay once, use it for good.',
+    lead: 'No monthly bills. Every tool you buy lives in one dashboard under one account.',
+    steps: [
+      { title: 'Pick a tool', text: 'Read what it does first. Start with the one you need most.' },
+      { title: 'Pay once', text: 'One payment per tool, lifetime access.' },
+      { title: 'Log in and use it', text: 'Open it on your phone or laptop, nothing to install.' },
+    ],
+  },
+  industries: {
+    eyebrow: 'Who it’s for',
+    title: 'Made for your kind of business.',
+    lead: 'The tools each type of business needs most. Click a tool to see the details.',
+    toolsFor: 'Tools for',
+    items: {
+      'jasa-profesional': { name: 'Professional Services', ex: 'Consultants, freelancers, agencies, outsourcing, content creators' },
+      kuliner: { name: 'Food & Beverage', ex: 'Cafés, restaurants, eateries, catering' },
+      retail: { name: 'Retail & Trade', ex: 'Shops, online sellers, building supplies, pharmacies' },
+      grosir: { name: 'Wholesale & Distribution', ex: 'Distributors, suppliers, trading' },
+      kecantikan: { name: 'Beauty & Care', ex: 'Salons, beauty clinics, pet grooming, laundry' },
+      kebugaran: { name: 'Fitness & Classes', ex: 'Yoga studios, gyms, community classes' },
+      kesehatan: { name: 'Health', ex: 'Clinics, doctor’s practices' },
+      pendidikan: { name: 'Education', ex: 'Private tutors, learning centers, course providers' },
+      kreatif: { name: 'Creative & Events', ex: 'Photographers, music studios, wedding and event organizers' },
+      otomotif: { name: 'Automotive & Repairs', ex: 'Workshops, vehicle rental, phone repair' },
+      properti: { name: 'Property & Construction', ex: 'Property agents, contractors' },
+      produksi: { name: 'Production', ex: 'Manufacturing, garments, farming, fisheries' },
+      organisasi: { name: 'Organizations', ex: 'Foundations, NGOs, communities, cooperatives, village enterprises' },
+    },
+  },
+  testimonials: {
+    eyebrow: 'User stories',
+    title: 'Stories from people who use it.',
+    showAll: (n) => `See all stories (${n})`,
+    showLess: 'Show less',
+    uses: 'uses',
+    items: id_testimonials_en(),
+  },
+  featured: {
+    eyebrow: 'Best-sellers',
+    title: 'Most popular tools',
+    screenshot: 'Screenshot',
+    learn: 'Learn about',
+    login: 'Already have access? Log in',
+    desc: {
+      'prospek-hub': 'Log every lead, get follow-up reminders, and track invoices until they’re paid. Sales staff see their own data; the owner sees everything.',
+      'nota-pos': 'A cashier on your phone or laptop: open a shift, check out fast, print receipts, and stock updates itself.',
+    },
+  },
+  custom: {
+    eyebrow: 'Custom',
+    title: 'Need a special feature or system for your business?',
+    lead: 'If your workflow isn’t covered by our tools yet, just tell us. We’ll study the process and send a feature proposal with a quote.',
+    points: ['Add features to tools you already use', 'A new system built around your workflow', 'Reports or dashboards in a custom format'],
+    name: 'Name',
+    namePh: 'Your name',
+    business: 'Type of business',
+    businessPh: 'Choose your business type',
+    options: ['Professional Services', 'Food & Beverage', 'Retail & Trade', 'Wholesale & Distribution', 'Beauty & Care', 'Fitness & Classes', 'Health', 'Education', 'Creative & Events', 'Automotive & Repairs', 'Property & Construction', 'Production', 'Organizations', 'Other'],
+    need: 'Tell us what you need',
+    needPh: 'e.g. we need a service queue system connected to the cashier',
+    submit: 'Send via WhatsApp',
+    note: 'This form opens WhatsApp with your message filled in.',
+    waIntro: 'Hi Kreasi Digital Hub, I need a custom feature/system.',
+  },
+  faq: {
+    title: 'Frequently asked questions',
+    items: [
+      { q: 'What does “pay once” mean?', a: 'You pay one time for each tool and use it with no monthly bills.' },
+      { q: 'Do I need to install an app?', a: 'No. Every tool is web-based and opens in the browser on your phone or laptop.' },
+      { q: 'Can one account use several tools?', a: 'Yes. Every tool you buy shows up in one Kreasi Digital Hub dashboard.' },
+      { q: 'What if my business needs a special feature?', a: 'Tell us what you need with the form in the Custom section. We’ll study your workflow and send a quote.' },
+    ],
+  },
+  other: {
+    eyebrow: 'Other products',
+    title: 'Beyond online tools.',
+    items: [
+      { title: 'Custom Website', tag: 'Website', desc: 'Websites for portfolios, online stores, and company, organization or foundation profiles. Built to your needs and easy to find on Google.', cta: 'Talk about a website', wa: 'Hi Kreasi Digital Hub, I’d like to discuss a Custom Website.' },
+      { title: 'AI Video Sosmed Generator', tag: 'AI · credits', desc: 'Short social media videos complete with hook, caption and CTA. Pay per video with credits.', cta: 'Try AI Video', wa: 'Hi Kreasi Digital Hub, I’m interested in the AI Video Sosmed Generator.' },
+    ],
+  },
+  finalCta: {
+    title: 'Practical online tools for your work and business.',
+    lead: 'Start with one tool, add more any time.',
+    primary: 'Help me choose',
+    secondary: 'See the catalog',
+  },
+  footer: {
+    tools: 'Online Tools',
+    company: 'Kreasi Digital Hub',
+    help: 'Help',
+    contact: 'Contact',
+    companyLinks: [{ label: 'How It Works', href: '#cara-kerja' }, { label: 'Who It’s For', href: '#industri' }, { label: 'Other products', href: '#produk-lainnya' }],
+    helpLinks: [{ label: 'FAQ', href: '#faq' }, { label: 'Custom', href: '#custom' }],
+    whatsapp: 'WhatsApp',
+    email: 'Email',
+    instagram: 'Instagram',
+    instagramSoon: 'coming soon',
+    copyright: '© 2026 Kreasi Digital Hub',
+    tagline: 'Made with care for professionals and business owners.',
+  },
+  categories: { konten: 'Content', pelanggan: 'Customers & Sales', ops: 'Operations', transaksi: 'Transactions', ulasan: 'Reviews & Testimonials', laporan: 'Reports & Accounting' },
+  tools: {
+    'content-planner': { name: 'Content Planner', desc: 'Content ideas, posting schedule and the status of every post.' },
+    'prospek-hub': { name: 'Prospek Hub', desc: 'Lead management: prospects, follow-ups, all the way to paid.' },
+    membership: { name: 'Membership', desc: 'Members, packages and active periods without spreadsheets.' },
+    'order-chat': { name: 'Order & Customer Chat', desc: 'Orders from chat tracked from received to shipped.' },
+    'booking-hub': { name: 'Booking Hub', desc: 'Bookings, appointments, staff schedules, classes and equipment.' },
+    'order-hub': { name: 'Order Hub', desc: 'Orders, kitchen, pickup and delivery in one flow.' },
+    stok: { name: 'Stock & Inventory', desc: 'Goods in, goods out and real-time stock levels.' },
+    servis: { name: 'Service & Warranty', desc: 'Incoming units, spare parts, service status and warranty.' },
+    proyek: { name: 'Projects & Clients', desc: 'Projects, vendors and event checklists per client.' },
+    kelas: { name: 'Classes & Students', desc: 'Schedules, attendance, curriculum and tuition payments.' },
+    event: { name: 'Events & Tickets', desc: 'Ticket sales, attendee data and check-in.' },
+    'dashboard-tim': { name: 'Internal Team Dashboard', desc: 'Tasks, progress and weekly team reports.' },
+    'nota-pos': { name: 'Nota POS Digital Cashier', short: 'Digital Cashier', desc: 'Cashier, receipt printing and daily shifts.' },
+    invoice: { name: 'Invoices & Payments', desc: 'Invoices, purchase orders, receipts and payment reminders.' },
+    ulasan: { name: 'Review Requests', desc: 'Send a link on WhatsApp, collect ratings and stories.' },
+    'testimonial-wall': { name: 'Testimonial Wall', desc: 'Show real reviews on your website.' },
+    'dashboard-laporan': { name: 'Reports Dashboard', desc: 'Sales, marketing and performance in charts.' },
+    'akunting-umkm': { name: 'Small Business Accounting', short: 'SME Accounting', desc: 'Automatic bookkeeping, cost of goods and financial statements.' },
+    'akunting-nirlaba': { name: 'Nonprofit Accounting (ISAK 335)', short: 'Nonprofit Accounting', desc: 'Financial statements for foundations and NGOs.' },
+    'akunting-koperasi': { name: 'Cooperative & Village Enterprise Accounting', short: 'Cooperative Accounting', desc: 'Member savings, loans and profit sharing.' },
+    donasi: { name: 'Donation & Activity Tracker', desc: 'Incoming donations and activity reports for donors.' },
+    'ai-video': { name: 'AI Video Sosmed Generator', desc: 'Short social media videos.' },
+  },
+  wa: {
+    notify: (t) => `Hi Kreasi Digital Hub, please let me know when ${t} is available.`,
+    learn: (t) => `Hi Kreasi Digital Hub, I’d like to know more about ${t}.`,
+    login: 'Hi Kreasi Digital Hub, I’d like to log in to my tools dashboard.',
+    hello: 'Hi Kreasi Digital Hub',
+  },
+};
+
+function id_testimonials_en() {
+  // PLACEHOLDER — fictional examples, English versions of the Indonesian placeholders.
+  return [
+    { name: 'Rina Anggraeni', role: 'Property agent', tool: 'prospek-hub', text: 'My leads used to live only in WhatsApp chats and I often forgot to follow up. Now every buyer has their own notes, and reminders show up on time.' },
+    { name: 'Budi Santoso', role: 'Coffee shop owner', tool: 'nota-pos', text: 'Checkout is fast, receipts print right away, and coffee bean stock updates itself. No more counting by hand at the end of a shift.' },
+    { name: 'Dewi Lestari', role: 'Salon owner', tool: 'booking-hub', text: 'Customer and therapist schedules no longer clash. Customers like being able to pick their own time.' },
+    { name: 'Hendra Wijaya', role: 'Grocery distributor', tool: 'akunting-umkm', text: 'Profit and loss and receivables are finally tidy every month. I can see where the money stands without waiting for year-end.' },
+    { name: 'Sari Puspita', role: 'Laundry business', tool: 'order-hub', text: 'Customers can check their laundry status any time. No more calls asking whether it’s ready.' },
+    { name: 'Andi Firmansyah', role: 'Photographer', tool: 'ulasan', text: 'I send one link on WhatsApp and clients leave a review. My website is now full of real testimonials.' },
+    { name: 'Maya Nirmala', role: 'Online store owner', tool: 'order-chat', text: 'Orders from chat are recorded right away, from payment to shipping. Nothing slips through on busy days.' },
+    { name: 'Rizal Saputra', role: 'Motorbike workshop owner', tool: 'servis', text: 'Every bike that comes in has its service and parts history. When a customer claims warranty, the data is right there.' },
+    { name: 'Lia Kurniasih', role: 'Content creator', tool: 'content-planner', text: 'Content ideas, posting schedule and status are all in one place. I finally post consistently every week.' },
+  ];
+}
+
+export const content: Record<Lang, Content> = { id, en };

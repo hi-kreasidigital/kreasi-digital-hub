@@ -1,0 +1,130 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import { content } from '../data/content';
+import { categoryOrder, type Lang } from '../data/tools';
+import { contact, flags, waLink } from '../data/site';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = content[lang];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const idHref = `${base}/`;
+const enHref = `${base}/en/`;
+const loginHref = flags.loginUrl ?? waLink(t.wa.login);
+const canonical = new URL(lang === 'en' ? enHref : idHref, Astro.site);
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{t.meta.title}</title>
+  <meta name="description" content={t.meta.description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="id" href={new URL(idHref, Astro.site)} />
+  <link rel="alternate" hreflang="en" href={new URL(enHref, Astro.site)} />
+  <link rel="icon" type="image/png" href={`${base}/favicon.png`} />
+  <meta property="og:title" content={t.meta.title} />
+  <meta property="og:description" content={t.meta.description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={new URL(`${base}/images/og-logo-navy.png`, Astro.site)} />
+  <meta name="theme-color" content="#0F2A4A" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  {flags.showPromo && (
+    <div class="promo">
+      <span>{t.promo.text}</span>
+      <a href="#cara-kerja">{t.promo.link}</a>
+    </div>
+  )}
+
+  <header class="site-header on-dark" id="top">
+    <div class="container header-inner">
+      <a class="brand" href={lang === 'en' ? enHref : idHref} aria-label={t.nav.home}>
+        <img src={`${base}/images/logo-white.svg`} alt="Kreasi Digital Hub" width="93" height="56" />
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label={t.nav.menu}>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16 M4 12h16 M4 17h16"></path></svg>
+      </button>
+      <nav class="main-nav" id="main-nav" aria-label={t.nav.menu}>
+        <a href="#tools">{t.nav.tools}</a>
+        <a href="#industri">{t.nav.forWho}</a>
+        <a href="#custom">{t.nav.custom}</a>
+        <a href="#cara-kerja">{t.nav.how}</a>
+        <a href="#faq">{t.nav.faq}</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-toggle" role="group" aria-label={t.nav.langLabel}>
+          <a href={idHref} hreflang="id" lang="id" aria-current={lang === 'id' ? 'true' : undefined}>ID</a>
+          <a href={enHref} hreflang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+        </div>
+        <a class="btn btn-sm btn-ghost-light" href={loginHref}>{t.nav.login}</a>
+        <a class="btn btn-sm btn-primary" href="#industri">{t.nav.start}</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="site-footer on-dark" id="kontak">
+    <div class="container">
+      <div class="footer-cols">
+        <div class="footer-brand">
+          <img src={`${base}/images/logo-white.svg`} alt="Kreasi Digital Hub" width="120" height="72" />
+        </div>
+        <nav class="footer-col" aria-label={t.footer.tools}>
+          <span class="title">{t.footer.tools}</span>
+          {categoryOrder.map((c) => <a href={`#tools`} data-cat-link={c}>{t.categories[c]}</a>)}
+        </nav>
+        <nav class="footer-col" aria-label={t.footer.company}>
+          <span class="title">{t.footer.company}</span>
+          {t.footer.companyLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+          <a href={loginHref}>{t.nav.login}</a>
+        </nav>
+        <nav class="footer-col" aria-label={t.footer.help}>
+          <span class="title">{t.footer.help}</span>
+          {t.footer.helpLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+        </nav>
+        <div class="footer-col">
+          <span class="title">{t.footer.contact}</span>
+          <a href={waLink(t.wa.hello)}>{t.footer.whatsapp}: {contact.whatsappDisplay}</a>
+          <a href={`mailto:${contact.email}`}>{t.footer.email}: {contact.email}</a>
+          {contact.instagram
+            ? <a href={contact.instagram}>{t.footer.instagram}</a>
+            : <span>{t.footer.instagram}: {t.footer.instagramSoon}</span>}
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>{t.footer.copyright}</span>
+        <span>{t.footer.tagline}</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href={waLink(t.wa.hello)} aria-label={`WhatsApp ${contact.whatsappDisplay}`}>
+    <Icon name="whatsapp" size={28} />
+  </a>
+
+  <script>
+    const header = document.querySelector('.site-header');
+    const toggle = document.querySelector('.menu-toggle');
+    toggle?.addEventListener('click', () => {
+      const open = header?.classList.toggle('open') ?? false;
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.querySelectorAll('.main-nav a, .header-actions a').forEach((a) =>
+      a.addEventListener('click', () => {
+        header?.classList.remove('open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      })
+    );
+  </script>
+</body>
+</html>
