@@ -13,14 +13,15 @@ export interface Content {
   industries: { eyebrow: string; title: string; lead: string; toolsFor: string; items: Record<string, { name: string; ex: string }> };
   testimonials: { eyebrow: string; title: string; showAll: (n: number) => string; showLess: string; uses: string; items: { name: string; role: string; tool: string; text: string }[] };
   featured: { eyebrow: string; title: string; screenshot: string; learn: string; login: string; desc: Record<string, string> };
-  custom: { eyebrow: string; title: string; lead: string; points: string[]; name: string; namePh: string; business: string; businessPh: string; options: string[]; need: string; needPh: string; submit: string; note: string; waIntro: string };
+  custom: { eyebrow: string; title: string; lead: string; points: string[]; name: string; namePh: string; business: string; businessPh: string; options: string[]; need: string; needPh: string; submit: string; note: string; mailIntro: string };
   faq: { title: string; items: { q: string; a: string }[] };
-  other: { eyebrow: string; title: string; items: { title: string; tag: string; desc: string; cta: string; wa: string }[] };
+  other: { eyebrow: string; title: string; items: { title: string; tag: string; desc: string; cta: string }[] };
   finalCta: { title: string; lead: string; primary: string; secondary: string };
   footer: { tools: string; company: string; help: string; contact: string; companyLinks: { label: string; href: string }[]; helpLinks: { label: string; href: string }[]; whatsapp: string; email: string; instagram: string; instagramSoon: string; copyright: string; tagline: string };
   categories: Record<CategoryId, string>;
   tools: Record<string, ToolText>;
-  wa: { notify: (tool: string) => string; learn: (tool: string) => string; login: string; hello: string };
+  mail: { customSubject: string; customOutro: string };
+  wa: { hello: string };
 }
 
 const id: Content = {
@@ -76,7 +77,7 @@ const id: Content = {
   industries: {
     eyebrow: 'Untuk siapa',
     title: 'Cocok untuk usaha kamu.',
-    lead: 'Tools yang paling dibutuhkan di tiap jenis usaha. Klik nama tool untuk melihat detailnya.',
+    lead: 'Tools yang paling dibutuhkan di tiap jenis usaha.',
     toolsFor: 'Tools untuk',
     items: {
       'jasa-profesional': { name: 'Jasa Profesional', ex: 'Konsultan, freelancer, agensi, outsourcing, content creator' },
@@ -136,9 +137,9 @@ const id: Content = {
     options: ['Jasa Profesional', 'Kuliner & F&B', 'Retail & Perdagangan', 'Grosir & Distributor', 'Kecantikan & Perawatan', 'Kebugaran & Kelas', 'Kesehatan', 'Pendidikan', 'Kreatif & Acara', 'Otomotif & Servis', 'Properti & Konstruksi', 'Produksi', 'Organisasi', 'Lainnya'],
     need: 'Ceritakan kebutuhanmu',
     needPh: 'Mis. kami butuh sistem antrean servis yang terhubung ke kasir',
-    submit: 'Kirim lewat WhatsApp',
-    note: 'Formulir ini membuka WhatsApp dengan pesan yang sudah terisi.',
-    waIntro: 'Halo Kreasi Digital Hub, saya butuh fitur/sistem custom.',
+    submit: 'Kirim lewat email',
+    note: 'Formulir ini membuka aplikasi email kamu dengan pesan yang sudah terisi, ditujukan ke hi.kreasi.digital@gmail.com.',
+    mailIntro: 'Halo Kreasi Digital Hub,\n\nSaya butuh fitur/sistem custom untuk usaha saya.',
   },
   faq: {
     title: 'Pertanyaan yang sering muncul',
@@ -153,8 +154,8 @@ const id: Content = {
     eyebrow: 'Produk lainnya',
     title: 'Di luar online tools.',
     items: [
-      { title: 'Custom Website', tag: 'Website', desc: 'Website untuk portfolio, online store, dan company profile, organisasi, atau yayasan. Dibuat sesuai kebutuhan dan mudah ditemukan di Google.', cta: 'Konsultasi website', wa: 'Halo Kreasi Digital Hub, saya ingin konsultasi Custom Website.' },
-      { title: 'AI Video Sosmed Generator', tag: 'AI · kredit', desc: 'Video pendek untuk media sosial, lengkap dengan hook, caption, dan CTA. Bayar per video dengan kredit.', cta: 'Coba AI Video', wa: 'Halo Kreasi Digital Hub, saya tertarik dengan AI Video Sosmed Generator.' },
+      { title: 'Custom Website', tag: 'Website', desc: 'Website untuk portfolio, online store, dan company profile, organisasi, atau yayasan. Dibuat sesuai kebutuhan dan mudah ditemukan di Google.', cta: 'Konsultasi website' },
+      { title: 'AI Video Sosmed Generator', tag: 'AI · kredit', desc: 'Video pendek untuk media sosial, lengkap dengan hook, caption, dan CTA. Bayar per video dengan kredit.', cta: 'Coba AI Video' },
     ],
   },
   finalCta: {
@@ -202,12 +203,11 @@ const id: Content = {
     donasi: { name: 'Pelacak Donasi & Kegiatan', desc: 'Donasi masuk dan laporan kegiatan untuk donatur.' },
     'ai-video': { name: 'AI Video Sosmed Generator', desc: 'Video pendek untuk media sosial.' },
   },
-  wa: {
-    notify: (t) => `Halo Kreasi Digital Hub, tolong kabari saya saat ${t} sudah tersedia.`,
-    learn: (t) => `Halo Kreasi Digital Hub, saya ingin tahu lebih lanjut tentang ${t}.`,
-    login: 'Halo Kreasi Digital Hub, saya ingin masuk ke dashboard tools saya.',
-    hello: 'Halo Kreasi Digital Hub',
+  mail: {
+    customSubject: 'Permintaan Custom',
+    customOutro: 'Terima kasih.',
   },
+  wa: { hello: 'Halo Kreasi Digital Hub' },
 };
 
 const en: Content = {
@@ -263,7 +263,7 @@ const en: Content = {
   industries: {
     eyebrow: 'Who it’s for',
     title: 'Made for your kind of business.',
-    lead: 'The tools each type of business needs most. Click a tool to see the details.',
+    lead: 'The tools each type of business needs most.',
     toolsFor: 'Tools for',
     items: {
       'jasa-profesional': { name: 'Professional Services', ex: 'Consultants, freelancers, agencies, outsourcing, content creators' },
@@ -312,9 +312,9 @@ const en: Content = {
     options: ['Professional Services', 'Food & Beverage', 'Retail & Trade', 'Wholesale & Distribution', 'Beauty & Care', 'Fitness & Classes', 'Health', 'Education', 'Creative & Events', 'Automotive & Repairs', 'Property & Construction', 'Production', 'Organizations', 'Other'],
     need: 'Tell us what you need',
     needPh: 'e.g. we need a service queue system connected to the cashier',
-    submit: 'Send via WhatsApp',
-    note: 'This form opens WhatsApp with your message filled in.',
-    waIntro: 'Hi Kreasi Digital Hub, I need a custom feature/system.',
+    submit: 'Send by email',
+    note: 'This form opens your email app with the message filled in, addressed to hi.kreasi.digital@gmail.com.',
+    mailIntro: 'Hi Kreasi Digital Hub,\n\nI need a custom feature/system for my business.',
   },
   faq: {
     title: 'Frequently asked questions',
@@ -329,8 +329,8 @@ const en: Content = {
     eyebrow: 'Other products',
     title: 'Beyond online tools.',
     items: [
-      { title: 'Custom Website', tag: 'Website', desc: 'Websites for portfolios, online stores, and company, organization or foundation profiles. Built to your needs and easy to find on Google.', cta: 'Talk about a website', wa: 'Hi Kreasi Digital Hub, I’d like to discuss a Custom Website.' },
-      { title: 'AI Video Sosmed Generator', tag: 'AI · credits', desc: 'Short social media videos complete with hook, caption and CTA. Pay per video with credits.', cta: 'Try AI Video', wa: 'Hi Kreasi Digital Hub, I’m interested in the AI Video Sosmed Generator.' },
+      { title: 'Custom Website', tag: 'Website', desc: 'Websites for portfolios, online stores, and company, organization or foundation profiles. Built to your needs and easy to find on Google.', cta: 'Talk about a website' },
+      { title: 'AI Video Sosmed Generator', tag: 'AI · credits', desc: 'Short social media videos complete with hook, caption and CTA. Pay per video with credits.', cta: 'Try AI Video' },
     ],
   },
   finalCta: {
@@ -378,12 +378,11 @@ const en: Content = {
     donasi: { name: 'Donation & Activity Tracker', desc: 'Incoming donations and activity reports for donors.' },
     'ai-video': { name: 'AI Video Sosmed Generator', desc: 'Short social media videos.' },
   },
-  wa: {
-    notify: (t) => `Hi Kreasi Digital Hub, please let me know when ${t} is available.`,
-    learn: (t) => `Hi Kreasi Digital Hub, I’d like to know more about ${t}.`,
-    login: 'Hi Kreasi Digital Hub, I’d like to log in to my tools dashboard.',
-    hello: 'Hi Kreasi Digital Hub',
+  mail: {
+    customSubject: 'Custom request',
+    customOutro: 'Thank you.',
   },
+  wa: { hello: 'Hi Kreasi Digital Hub' },
 };
 
 function id_testimonials_en() {

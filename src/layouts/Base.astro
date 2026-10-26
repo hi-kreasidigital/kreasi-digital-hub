@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import Icon from '../components/Icon.astro';
 import { content } from '../data/content';
 import { categoryOrder, type Lang } from '../data/tools';
 import { contact, flags, waLink } from '../data/site';
@@ -11,7 +10,6 @@ const t = content[lang];
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const idHref = `${base}/`;
 const enHref = `${base}/en/`;
-const loginHref = flags.loginUrl ?? waLink(t.wa.login);
 const canonical = new URL(lang === 'en' ? enHref : idHref, Astro.site);
 ---
 <!doctype html>
@@ -63,7 +61,9 @@ const canonical = new URL(lang === 'en' ? enHref : idHref, Astro.site);
           <a href={idHref} hreflang="id" lang="id" aria-current={lang === 'id' ? 'true' : undefined}>ID</a>
           <a href={enHref} hreflang="en" lang="en" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
         </div>
-        <a class="btn btn-sm btn-ghost-light" href={loginHref}>{t.nav.login}</a>
+        {flags.loginUrl
+          ? <a class="btn btn-sm btn-ghost-light" href={flags.loginUrl}>{t.nav.login}</a>
+          : <span class="btn btn-sm btn-ghost-light is-disabled" aria-disabled="true">{t.nav.login}</span>}
         <a class="btn btn-sm btn-primary" href="#industri">{t.nav.start}</a>
       </div>
     </div>
@@ -86,7 +86,6 @@ const canonical = new URL(lang === 'en' ? enHref : idHref, Astro.site);
         <nav class="footer-col" aria-label={t.footer.company}>
           <span class="title">{t.footer.company}</span>
           {t.footer.companyLinks.map((l) => <a href={l.href}>{l.label}</a>)}
-          <a href={loginHref}>{t.nav.login}</a>
         </nav>
         <nav class="footer-col" aria-label={t.footer.help}>
           <span class="title">{t.footer.help}</span>
@@ -94,7 +93,8 @@ const canonical = new URL(lang === 'en' ? enHref : idHref, Astro.site);
         </nav>
         <div class="footer-col">
           <span class="title">{t.footer.contact}</span>
-          <a href={waLink(t.wa.hello)}>{t.footer.whatsapp}: {contact.whatsappDisplay}</a>
+          <span class="label">{t.footer.whatsapp}</span>
+          <a class="value" href={waLink(t.wa.hello)}>{contact.whatsappDisplay}</a>
           <a href={`mailto:${contact.email}`}>{t.footer.email}: {contact.email}</a>
           {contact.instagram
             ? <a href={contact.instagram}>{t.footer.instagram}</a>
@@ -108,9 +108,6 @@ const canonical = new URL(lang === 'en' ? enHref : idHref, Astro.site);
     </div>
   </footer>
 
-  <a class="wa-float" href={waLink(t.wa.hello)} aria-label={`WhatsApp ${contact.whatsappDisplay}`}>
-    <Icon name="whatsapp" size={28} />
-  </a>
 
   <script>
     const header = document.querySelector('.site-header');

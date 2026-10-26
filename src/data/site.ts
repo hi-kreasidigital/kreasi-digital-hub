@@ -13,9 +13,16 @@ export const flags = {
   // Testimonials: the current entries are placeholders. Replace them with real customer stories
   // (collected with consent) before turning this on — fictional reviews must not go live.
   showTestimonials: false,
-  // URL of the login/dashboard app. Leave null until the app exists; the "Masuk" button then links to WhatsApp.
+  // URL of the login/dashboard app. Leave null until the app exists; the "Masuk" button stays inactive until then.
   loginUrl: null as string | null,
 };
+
+// Until the Supabase backend is ready, the Custom form opens the visitor's email app
+// with a pre-filled message to contact.email.
+export interface Mail { subject: string; body: string }
+export function mailLink(m: Mail): string {
+  return `mailto:${contact.email}?subject=${encodeURIComponent(m.subject)}&body=${encodeURIComponent(m.body)}`;
+}
 
 export function waLink(text: string): string {
   return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(text)}`;
@@ -45,5 +52,6 @@ export const icons: Record<string, string> = {
   bank: 'M3 10l9-6 9 6 M5 10v8 M10 10v8 M14 10v8 M19 10v8 M3 21h18',
   globe: 'M12 2a10 10 0 1 0 0 20a10 10 0 1 0 0-20Z M2 12h20 M12 2c3 3 3 17 0 20 M12 2c-3 3-3 17 0 20',
   video: 'M3 6h12v12H3z M15 10l6-3v10l-6-3',
+  mail: 'M3 5h18v14H3z M3 6l9 7 9-7',
   whatsapp: 'M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.6z M9 9c0 3 3 6 6 6l1.5-1.5-2-1-1 1c-1-.5-2-1.5-2.5-2.5l1-1-1-2z',
 };
