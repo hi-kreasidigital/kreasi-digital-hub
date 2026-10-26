@@ -27,7 +27,16 @@ const canonical = new URL(lang === 'en' ? enHref : idHref, Astro.site);
   <meta property="og:description" content={t.meta.description} />
   <meta property="og:type" content="website" />
   <meta property="og:url" content={canonical} />
-  <meta property="og:image" content={new URL(`${base}/images/og-logo-navy.png`, Astro.site)} />
+  <meta property="og:site_name" content="Kreasi Digital Hub" />
+  <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'id_ID'} />
+  <meta property="og:image" content={new URL(`${base}/images/og-${lang}.png`, Astro.site)} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={lang === 'en' ? 'Kreasi Digital Hub — One dashboard. Many tools.' : 'Kreasi Digital Hub — Satu dashboard. Banyak tools.'} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={t.meta.title} />
+  <meta name="twitter:description" content={t.meta.description} />
+  <meta name="twitter:image" content={new URL(`${base}/images/og-${lang}.png`, Astro.site)} />
   <meta name="theme-color" content="#0F2A4A" />
 </head>
 <body>
