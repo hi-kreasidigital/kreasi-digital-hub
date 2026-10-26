@@ -262,8 +262,14 @@ button, input, select, textarea { font: inherit; }
 .hero > .container, .section > .container, .final > .container { position: relative; z-index: 1; }
 .deco { position: absolute; z-index: 0; width: var(--deco-size, 220px); height: var(--deco-size, 220px); opacity: 0.07; pointer-events: none; user-select: none; }
 .on-dark .deco { opacity: 0.1; }
-.deco-tl { top: -36px; left: -48px; transform: rotate(-12deg); }
-.deco-tr { top: -28px; right: -40px; transform: rotate(10deg); }
-.deco-bl { bottom: -40px; left: -36px; transform: rotate(8deg); }
-.deco-br { bottom: -36px; right: -44px; transform: rotate(-10deg); }
-@media (max-width: 720px) { .deco { width: calc(var(--deco-size, 220px) * 0.6); height: calc(var(--deco-size, 220px) * 0.6); } }
+/* Motifs sit fully inside the section (no cropping), in the corners' free space */
+.deco-tl { top: 40px; left: 32px; transform: rotate(-8deg); }
+.deco-tr { top: 40px; right: 32px; transform: rotate(8deg); }
+.deco-bl { bottom: 40px; left: 32px; transform: rotate(6deg); }
+.deco-br { bottom: 40px; right: 32px; transform: rotate(-6deg); }
+@media (max-width: 1100px) { .deco { width: calc(var(--deco-size, 220px) * 0.75); height: calc(var(--deco-size, 220px) * 0.75); } }
+@media (max-width: 720px) {
+  .deco { width: calc(var(--deco-size, 220px) * 0.55); height: calc(var(--deco-size, 220px) * 0.55); }
+  .deco-tl, .deco-tr { top: 16px; } .deco-bl, .deco-br { bottom: 16px; }
+  .deco-tl, .deco-bl { left: 8px; } .deco-tr, .deco-br { right: 8px; }
+}
