@@ -249,12 +249,21 @@ button, input, select, textarea { font: inherit; }
 /* Newsletter */
 .newsletter { display: flex; flex-wrap: wrap; gap: 32px 48px; align-items: center; }
 .newsletter-copy { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.newsletter-copy .lead { font-size: 16px; line-height: 26px; }
 .newsletter-form { flex: 1 1 440px; min-width: 0; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 12px; position: relative; }
-.newsletter-motif { position: absolute; top: -28px; right: 24px; width: 56px; height: 56px; }
 .newsletter-row { display: flex; flex-wrap: wrap; gap: 12px; }
 .newsletter-row input { flex: 1 1 220px; min-width: 0; font-size: 16px; padding: 12px 14px; border: 2px solid var(--line-strong); border-radius: var(--radius); color: var(--ink); }
 .newsletter-row input:focus { border-color: var(--ocean); outline: none; }
 .newsletter-form .note { font-size: 14px; color: var(--ink-3); }
 
-/* Garis pelaut (sailor stripes) at the top of the footer */
-.stripes { height: 18px; background-image: repeating-linear-gradient(to bottom, var(--white) 0 3px, transparent 3px 6px); opacity: 0.9; margin-bottom: 40px; }
+
+/* Faint nautical motifs behind sections */
+.hero, .section, .final { position: relative; overflow: hidden; }
+.hero > .container, .section > .container, .final > .container { position: relative; z-index: 1; }
+.deco { position: absolute; z-index: 0; width: var(--deco-size, 220px); height: var(--deco-size, 220px); opacity: 0.07; pointer-events: none; user-select: none; }
+.on-dark .deco { opacity: 0.1; }
+.deco-tl { top: -36px; left: -48px; transform: rotate(-12deg); }
+.deco-tr { top: -28px; right: -40px; transform: rotate(10deg); }
+.deco-bl { bottom: -40px; left: -36px; transform: rotate(8deg); }
+.deco-br { bottom: -36px; right: -44px; transform: rotate(-10deg); }
+@media (max-width: 720px) { .deco { width: calc(var(--deco-size, 220px) * 0.6); height: calc(var(--deco-size, 220px) * 0.6); } }

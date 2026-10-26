@@ -162,7 +162,7 @@ const id: Content = {
   newsletter: {
     eyebrow: 'Newsletter',
     title: 'Tips praktis merapikan kerja dan usaha, langsung ke email kamu.',
-    lead: 'Satu langkah kecil yang bisa kamu coba minggu itu, plus kabar tool baru. Kami kirim sesekali saja, tanpa spam.',
+    lead: 'Kami kirim artikel dan tips praktis agar kerjaan dan usaha kamu lebih lancar.',
     label: 'Alamat email',
     placeholder: 'email@usahakamu.com',
     submit: 'Daftar',
@@ -348,7 +348,7 @@ const en: Content = {
   newsletter: {
     eyebrow: 'Newsletter',
     title: 'Practical tips for tidier work and business, straight to your inbox.',
-    lead: 'One small step you can try that week, plus news about new tools. We write only now and then, no spam.',
+    lead: 'We send articles and practical tips to help your work and business run more smoothly.',
     label: 'Email address',
     placeholder: 'email@yourbusiness.com',
     submit: 'Sign up',

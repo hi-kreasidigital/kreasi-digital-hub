@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import Eyebrow from './Eyebrow.astro';
+import Deco from './Deco.astro';
 import { content } from '../data/content';
 import { tools, categoryOrder, industryOrder, industryTools, journey, featured, type Lang } from '../data/tools';
 import { flags, contact } from '../data/site';
@@ -19,6 +20,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- HERO -->
 <section class="hero">
+  <Deco name="kompas" pos="br" size={260} />
   <div class="container hero-grid">
     <div class="hero-copy">
       <Eyebrow text={t.hero.eyebrow} />
@@ -55,6 +57,8 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- MULTI TOOLS PLATFORM / JOURNEY -->
 <section class="section bg-mist" aria-labelledby="journey-title">
+  <Deco name="rute" pos="tr" size={200} />
+  <Deco name="ombak" pos="bl" size={180} />
   <div class="container">
     <div class="section-head">
       <Eyebrow text={t.journey.eyebrow} />
@@ -81,6 +85,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- CATALOG -->
 <section class="section border-top" id="tools" aria-labelledby="catalog-title">
+  <Deco name="kemudi" pos="tl" size={200} />
   <div class="container">
     <div class="catalog-head">
       <div class="section-head">
@@ -128,6 +133,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- HOW IT WORKS -->
 <section class="section bg-ocean on-dark" id="cara-kerja" aria-labelledby="how-title">
+  <Deco name="jangkar" pos="tr" dark size={220} />
   <div class="container">
     <div class="section-head">
       <Eyebrow text={t.how.eyebrow} dark />
@@ -144,6 +150,8 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- WHO IT'S FOR -->
 <section class="section bg-mist" id="industri" aria-labelledby="industry-title">
+  <Deco name="pelampung" pos="tr" size={200} />
+  <Deco name="kompas" pos="bl" size={180} />
   <div class="container">
     <div class="section-head">
       <Eyebrow text={t.industries.eyebrow} />
@@ -167,6 +175,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 <!-- USER STORIES -->
 {flags.showTestimonials && (
   <section class="section" aria-labelledby="stories-title">
+    <Deco name="mercusuar" pos="tr" size={200} />
     <div class="container">
       <div class="section-head">
         <Eyebrow text={t.testimonials.eyebrow} />
@@ -194,6 +203,8 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- BEST-SELLERS -->
 <section class="section bg-ocean on-dark" aria-labelledby="featured-title">
+  <Deco name="ombak" pos="tr" dark size={220} />
+  <Deco name="kemudi" pos="bl" dark size={200} />
   <div class="container">
     <div class="section-head">
       <Eyebrow text={t.featured.eyebrow} dark />
@@ -223,6 +234,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- CUSTOM -->
 <section class="section" id="custom" aria-labelledby="custom-title">
+  <Deco name="jangkar" pos="bl" size={200} />
   <div class="container custom-grid">
     <div class="custom-copy">
       <div class="section-head">
@@ -253,6 +265,8 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- FAQ -->
 <section class="section bg-ocean on-dark" id="faq" aria-labelledby="faq-title">
+  <Deco name="pelampung" pos="br" dark size={220} />
+  <Deco name="mercusuar" pos="tl" dark size={180} />
   <div class="container faq">
     <h2 class="h2" id="faq-title">{t.faq.title}</h2>
     <div class="faq-list">
@@ -268,6 +282,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- OTHER PRODUCTS -->
 <section class="section" id="produk-lainnya" aria-labelledby="other-title">
+  <Deco name="rute" pos="br" size={200} />
   <div class="container">
     <div class="section-head">
       <Eyebrow text={t.other.eyebrow} />
@@ -288,6 +303,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- NEWSLETTER -->
 <section class="section bg-sky" id="newsletter" aria-labelledby="newsletter-title">
+  <Deco name="ombak" pos="br" size={200} />
   <div class="container newsletter">
     <div class="newsletter-copy">
       <Eyebrow text={t.newsletter.eyebrow} />
@@ -295,7 +311,6 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
       <p class="lead">{t.newsletter.lead}</p>
     </div>
     <form class="newsletter-form" id="newsletter-form" data-email={contact.email} data-subject={t.newsletter.mailSubject} data-body={t.newsletter.mailBody}>
-      <img class="newsletter-motif" src={`${base}/images/motifs/mercusuar-navy.svg`} alt="" width="56" height="56" />
       <div class="newsletter-row">
         <label class="sr-only" for="newsletter-email">{t.newsletter.label}</label>
         <input type="email" id="newsletter-email" name="email" placeholder={t.newsletter.placeholder} autocomplete="email" required />
@@ -308,6 +323,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 
 <!-- FINAL CTA -->
 <section class="final bg-ocean on-dark" aria-labelledby="final-title">
+  <Deco name="kompas" pos="tl" dark size={220} />
   <div class="container final-inner">
     <div class="final-copy">
       <h2 class="h2" id="final-title">{t.finalCta.title}</h2>

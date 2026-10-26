@@ -1,0 +1,7 @@
+---
+// Large, faint nautical motif placed behind a section's content (decoration only).
+interface Props { name: string; pos: 'tl' | 'tr' | 'bl' | 'br'; dark?: boolean; size?: number }
+const { name, pos, dark = false, size = 220 } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<img class={`deco deco-${pos}`} src={`${base}/images/motifs/${name}-${dark ? 'white' : 'navy'}.svg`} alt="" aria-hidden="true" width={size} height={size} style={`--deco-size:${size}px`} loading="lazy" />
