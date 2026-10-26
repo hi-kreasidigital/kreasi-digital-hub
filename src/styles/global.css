@@ -279,6 +279,6 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* Red accent (brand kit: one spark per layout — key word, life ring, north point) */
-.spark { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 0.1em; text-underline-offset: 0.1em; text-decoration-skip-ink: none; }
+.spark { color: var(--ocean); text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 0.1em; text-underline-offset: 0.1em; text-decoration-skip-ink: none; }
 .feat-shot { position: relative; }
 .sticker { position: absolute; top: 16px; left: 16px; z-index: 1; background: var(--red); color: var(--white); font-family: var(--font-head); font-weight: 700; font-size: 13px; line-height: 16px; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; }
