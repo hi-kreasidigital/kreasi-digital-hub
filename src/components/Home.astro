@@ -45,7 +45,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
       <div class="mock-grid">
         {heroTiles.map((id, i) => (
           <div class="mock-tile">
-            <span class={i === 3 ? 'icon-box dark' : 'icon-box'}><Icon name={heroIcon[id]} /></span>
+            <span class={id === 'nota-pos' ? 'icon-box red' : 'icon-box'}><Icon name={heroIcon[id]} /></span>
             <div><strong>{name(id)}</strong><span>{t.hero.mockStates[id]}</span></div>
           </div>
         ))}
@@ -111,7 +111,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
       {tools.map((tool, i) => (
         <article class="tool-card" data-cat={tool.cat} data-search={`${name(tool.id)} ${t.tools[tool.id].desc} ${t.categories[tool.cat]}`.toLowerCase()} hidden={i >= LIMIT}>
           <div class="tool-top">
-            <span class="icon-box"><Icon name={tool.icon} /></span>
+            <span class="icon-box red"><Icon name={tool.icon} /></span>
             <span class="tag">{t.catalog.typeTool}</span>
           </div>
           <div>

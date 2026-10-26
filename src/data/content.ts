@@ -35,7 +35,7 @@ const id: Content = {
   hero: {
     eyebrow: 'Multi tools platform · Kreasi Digital Hub',
     title: 'Online tools praktis untuk urusan kerja dan usaha kamu.',
-    titleKey: 'praktis',
+    titleKey: 'tools praktis',
     lead: 'Dari konten sosmed, kelola pelanggan, kasir, booking, sampai laporan keuangan. Semua dalam satu akun.',
     ctaPrimary: 'Lihat semua tools',
     ctaSecondary: 'Bantu saya memilih',
@@ -234,7 +234,7 @@ const en: Content = {
   hero: {
     eyebrow: 'Multi tools platform · Kreasi Digital Hub',
     title: 'Practical online tools for your work and business.',
-    titleKey: 'Practical',
+    titleKey: 'Practical online tools',
     lead: 'From social media content, customers, cashier and bookings to financial reports. All in one account.',
     ctaPrimary: 'See all tools',
     ctaSecondary: 'Help me choose',

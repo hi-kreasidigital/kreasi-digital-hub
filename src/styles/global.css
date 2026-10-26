@@ -105,13 +105,14 @@ button, input, select, textarea { font: inherit; }
 .mock-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .mock-hello { font-family: var(--font-head); font-weight: 700; font-size: 20px; line-height: 28px; }
 .mock-sub { font-size: 14px; color: var(--ink-3); }
-.avatar { width: 44px; height: 44px; border-radius: 999px; background: var(--navy); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex: 0 0 auto; }
+.avatar { width: 44px; height: 44px; border-radius: 999px; background: var(--red); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex: 0 0 auto; }
 .mock-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
 .mock-tile { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 12px; min-height: 104px; }
 .mock-tile strong { font-family: var(--font-head); font-size: 15px; line-height: 20px; display: block; }
 .mock-tile span { font-size: 14px; line-height: 18px; color: var(--ink-3); }
 .icon-box { width: 40px; height: 40px; border-radius: var(--radius); background: var(--sky); color: var(--ocean); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; }
 .icon-box.dark { background: var(--navy); color: var(--white); }
+.icon-box.red { color: var(--red); }
 .mock-add { background: var(--white); border: 1px dashed #9FB3C8; border-radius: var(--radius); padding: 14px 16px; display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--ink-2); }
 .mock-add a { font-weight: 700; }
 
@@ -119,7 +120,7 @@ button, input, select, textarea { font: inherit; }
 .journey { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
 .journey li { display: flex; flex-direction: column; gap: 12px; }
 .journey-top { display: flex; align-items: center; gap: 8px; }
-.journey-num { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 999px; background: var(--white); border: 2px solid var(--navy); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-weight: 800; font-size: 15px; }
+.journey-num { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 999px; background: var(--white); border: 2px solid var(--navy); display: flex; align-items: center; justify-content: center; font-family: var(--font-head); font-weight: 800; font-size: 15px; color: var(--red); }
 .journey-line { flex: 1 1 auto; border-top: 3px dotted var(--ocean); }
 .journey-card { background: var(--white); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; }
 .journey-card strong { font-family: var(--font-head); font-size: 17px; line-height: 22px; }
@@ -156,7 +157,7 @@ button, input, select, textarea { font: inherit; }
 /* How */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
 .steps li { background: var(--white); color: var(--navy); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 8px; }
-.steps .num { font-family: var(--font-head); font-weight: 800; font-size: 15px; color: var(--ocean); }
+.steps .num { font-family: var(--font-head); font-weight: 800; font-size: 15px; color: var(--red); }
 .steps strong { font-family: var(--font-head); font-weight: 700; font-size: 20px; line-height: 26px; }
 .steps span:last-child { font-size: 15px; line-height: 24px; color: var(--ink-2); }
 
@@ -278,7 +279,6 @@ button, input, select, textarea { font: inherit; }
 }
 
 /* Red accent (brand kit: one spark per layout — key word, life ring, north point) */
-.spark { position: relative; white-space: nowrap; }
-.spark::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0.02em; height: 0.12em; background: var(--red); border-radius: 4px; }
+.spark { text-decoration: underline; text-decoration-color: var(--red); text-decoration-thickness: 0.1em; text-underline-offset: 0.1em; text-decoration-skip-ink: none; }
 .feat-shot { position: relative; }
 .sticker { position: absolute; top: 16px; left: 16px; z-index: 1; background: var(--red); color: var(--white); font-family: var(--font-head); font-weight: 700; font-size: 13px; line-height: 16px; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 10px; border-radius: 999px; }
