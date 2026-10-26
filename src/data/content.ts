@@ -6,13 +6,13 @@ export interface Content {
   meta: { title: string; description: string };
   promo: { text: string; link: string };
   nav: { tools: string; forWho: string; custom: string; how: string; faq: string; login: string; start: string; langLabel: string; home: string; menu: string };
-  hero: { eyebrow: string; title: string; lead: string; ctaPrimary: string; ctaSecondary: string; points: string[]; mockHello: string; mockSub: string; mockStates: Record<string, string>; mockAdd: string; mockAddLink: string };
+  hero: { eyebrow: string; title: string; titleKey: string; lead: string; ctaPrimary: string; ctaSecondary: string; points: string[]; mockHello: string; mockSub: string; mockStates: Record<string, string>; mockAdd: string; mockAddLink: string };
   journey: { eyebrow: string; title: string; lead: string };
   catalog: { eyebrow: string; title: string; searchLabel: string; searchPlaceholder: string; all: string; showAll: (n: number) => string; showLess: string; empty: string; live: string; soon: string; learn: string; notify: string; typeTool: string };
   how: { eyebrow: string; title: string; lead: string; steps: { title: string; text: string }[] };
   industries: { eyebrow: string; title: string; lead: string; toolsFor: string; items: Record<string, { name: string; ex: string }> };
   testimonials: { eyebrow: string; title: string; showAll: (n: number) => string; showLess: string; uses: string; items: { name: string; role: string; tool: string; text: string }[] };
-  featured: { eyebrow: string; title: string; screenshot: string; learn: string; login: string; desc: Record<string, string> };
+  featured: { eyebrow: string; title: string; badge: string; screenshot: string; learn: string; login: string; desc: Record<string, string> };
   custom: { eyebrow: string; title: string; lead: string; points: string[]; name: string; namePh: string; business: string; businessPh: string; options: string[]; need: string; needPh: string; submit: string; note: string; mailIntro: string };
   faq: { title: string; items: { q: string; a: string }[] };
   other: { eyebrow: string; title: string; items: { title: string; tag: string; desc: string; cta: string }[] };
@@ -35,6 +35,7 @@ const id: Content = {
   hero: {
     eyebrow: 'Multi tools platform · Kreasi Digital Hub',
     title: 'Online tools praktis untuk urusan kerja dan usaha kamu.',
+    titleKey: 'praktis',
     lead: 'Dari konten sosmed, kelola pelanggan, kasir, booking, sampai laporan keuangan. Semua dalam satu akun.',
     ctaPrimary: 'Lihat semua tools',
     ctaSecondary: 'Bantu saya memilih',
@@ -118,6 +119,7 @@ const id: Content = {
   featured: {
     eyebrow: 'Best-sellers',
     title: 'Tools paling populer',
+    badge: 'Terlaris',
     screenshot: 'Screenshot',
     learn: 'Pelajari',
     login: 'Sudah punya akses? Masuk',
@@ -161,8 +163,8 @@ const id: Content = {
   },
   newsletter: {
     eyebrow: 'Newsletter',
-    title: 'Tips praktis merapikan kerja dan usaha, langsung ke email kamu.',
-    lead: 'Kami kirim artikel dan tips praktis agar kerjaan dan usaha kamu lebih lancar.',
+    title: 'Artikel dan tips praktis agar kerjaan dan usaha kamu lebih lancar',
+    lead: 'Satu langkah kecil yang bisa kamu coba plus kabar tool baru langsung ke email kamu. Kami kirim artikel dan tips praktis sesekali aja. Tanpa spam.',
     label: 'Alamat email',
     placeholder: 'email@usahakamu.com',
     submit: 'Daftar',
@@ -232,6 +234,7 @@ const en: Content = {
   hero: {
     eyebrow: 'Multi tools platform · Kreasi Digital Hub',
     title: 'Practical online tools for your work and business.',
+    titleKey: 'Practical',
     lead: 'From social media content, customers, cashier and bookings to financial reports. All in one account.',
     ctaPrimary: 'See all tools',
     ctaSecondary: 'Help me choose',
@@ -304,6 +307,7 @@ const en: Content = {
   featured: {
     eyebrow: 'Best-sellers',
     title: 'Most popular tools',
+    badge: 'Best-seller',
     screenshot: 'Screenshot',
     learn: 'Learn about',
     login: 'Already have access? Log in',
@@ -347,8 +351,8 @@ const en: Content = {
   },
   newsletter: {
     eyebrow: 'Newsletter',
-    title: 'Practical tips for tidier work and business, straight to your inbox.',
-    lead: 'We send articles and practical tips to help your work and business run more smoothly.',
+    title: 'Articles and practical tips to help your work and business run more smoothly',
+    lead: 'One small step you can try, plus news about new tools, straight to your inbox. We send articles and practical tips only now and then. No spam.',
     label: 'Email address',
     placeholder: 'email@yourbusiness.com',
     submit: 'Sign up',

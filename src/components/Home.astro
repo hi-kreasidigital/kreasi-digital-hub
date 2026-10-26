@@ -24,7 +24,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
   <div class="container hero-grid">
     <div class="hero-copy">
       <Eyebrow text={t.hero.eyebrow} />
-      <h1>{t.hero.title}</h1>
+      <h1>{t.hero.title.split(t.hero.titleKey).map((part, i) => i === 0 ? part : <Fragment><span class="spark">{t.hero.titleKey}</span>{part}</Fragment>)}</h1>
       <p class="lead">{t.hero.lead}</p>
       <div class="btn-row">
         <a class="btn btn-primary" href="#tools">{t.hero.ctaPrimary}</a>
@@ -217,7 +217,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
         const tool = tools.find((x) => x.id === id)!;
         return (
           <article class="feat">
-            <div class="feat-shot"><img src={`${base}/images/mockup-${id}.webp`} alt={`${t.featured.screenshot} ${name(id)}`} width="900" height="1200" loading="lazy" /></div>
+            <div class="feat-shot"><span class="sticker">{t.featured.badge}</span><img src={`${base}/images/mockup-${id}.webp`} alt={`${t.featured.screenshot} ${name(id)}`} width="900" height="1200" loading="lazy" /></div>
             <div class="feat-body">
               <span class="feat-cat">{t.categories[tool.cat]}</span>
               <h3>{name(id)}</h3>
