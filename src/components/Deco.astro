@@ -1,6 +1,6 @@
 ---
 // Large, faint nautical motif placed behind a section's content (decoration only).
-interface Props { name: string; pos: 'tl' | 'tr' | 'bl' | 'br'; dark?: boolean; size?: number }
+interface Props { name: string; pos: 'tl' | 'tr' | 'bl' | 'br' | 'ml' | 'mr'; dark?: boolean; size?: number }
 const { name, pos, dark = false, size = 220 } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---

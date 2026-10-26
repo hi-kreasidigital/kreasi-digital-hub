@@ -267,9 +267,12 @@ button, input, select, textarea { font: inherit; }
 .deco-tr { top: 40px; right: 32px; transform: rotate(8deg); }
 .deco-bl { bottom: 40px; left: 32px; transform: rotate(6deg); }
 .deco-br { bottom: 40px; right: 32px; transform: rotate(-6deg); }
+.deco-ml { top: 50%; left: 16px; transform: translateY(-50%) rotate(-6deg); }
+.deco-mr { top: 50%; right: 16px; transform: translateY(-50%) rotate(8deg); }
+.hero .deco-br { right: 16px; bottom: 32px; }
 @media (max-width: 1100px) { .deco { width: calc(var(--deco-size, 220px) * 0.75); height: calc(var(--deco-size, 220px) * 0.75); } }
 @media (max-width: 720px) {
   .deco { width: calc(var(--deco-size, 220px) * 0.55); height: calc(var(--deco-size, 220px) * 0.55); }
   .deco-tl, .deco-tr { top: 16px; } .deco-bl, .deco-br { bottom: 16px; }
-  .deco-tl, .deco-bl { left: 8px; } .deco-tr, .deco-br { right: 8px; }
+  .deco-tl, .deco-bl, .deco-ml { left: 8px; } .deco-tr, .deco-br, .deco-mr { right: 8px; }
 }
