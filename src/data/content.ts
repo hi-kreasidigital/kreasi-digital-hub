@@ -16,6 +16,7 @@ export interface Content {
   custom: { eyebrow: string; title: string; lead: string; points: string[]; name: string; namePh: string; business: string; businessPh: string; options: string[]; need: string; needPh: string; submit: string; note: string; mailIntro: string };
   faq: { title: string; items: { q: string; a: string }[] };
   other: { eyebrow: string; title: string; items: { title: string; tag: string; desc: string; cta: string }[] };
+  newsletter: { eyebrow: string; title: string; lead: string; label: string; placeholder: string; submit: string; note: string; mailSubject: string; mailBody: string };
   finalCta: { title: string; lead: string; primary: string; secondary: string };
   footer: { tools: string; company: string; help: string; contact: string; companyLinks: { label: string; href: string }[]; helpLinks: { label: string; href: string }[]; whatsapp: string; email: string; instagram: string; instagramSoon: string; copyright: string; tagline: string };
   categories: Record<CategoryId, string>;
@@ -40,14 +41,14 @@ const id: Content = {
     points: ['Sekali bayar, tanpa langganan', 'Satu akun untuk semua tools', 'Bisa dibuka dari HP'],
     mockHello: 'Halo, Rina',
     mockSub: 'Dashboard Kreasi Digital Hub · 4 tools aktif',
-    mockStates: { 'prospek-hub': '12 prospek aktif', 'nota-pos': 'Shift hari ini', 'content-planner': '3 posting minggu ini', 'akunting-umkm': 'Laporan Oktober' },
+    mockStates: { 'prospek-hub': '12 prospek aktif', 'nota-pos': 'Laporan penjualan', 'content-planner': '3 posting minggu ini', 'akunting-umkm': 'Laporan Oktober' },
     mockAdd: '+ Tambah tool lain ke dashboard',
     mockAddLink: 'Buka katalog',
   },
   journey: {
     eyebrow: 'Multi tools platform',
     title: 'Dari konten sosmed sampai pembukuan rapi, ada alatnya di tiap titik.',
-    lead: 'Nggak harus semua sekaligus. Pilih satu tool yang paling kamu butuhkan minggu ini. Sisanya bisa menyusul.',
+    lead: 'Nggak perlu semua sekaligus. Pilih satu tool yang paling kamu butuhkan minggu ini. Sisanya bisa menyusul.',
   },
   catalog: {
     eyebrow: 'Katalog',
@@ -104,7 +105,7 @@ const id: Content = {
     // PLACEHOLDER — fictional examples from the wireframe. Replace with real stories before enabling flags.showTestimonials.
     items: [
       { name: 'Rina Anggraeni', role: 'Agen properti', tool: 'prospek-hub', text: 'Dulu prospek cuma ada di chat WhatsApp dan sering lupa follow-up. Sekarang tiap calon pembeli punya catatan sendiri, dan pengingatnya muncul tepat waktu.' },
-      { name: 'Budi Santoso', role: 'Pemilik kedai kopi', tool: 'nota-pos', text: 'Kasir jadi cepat, struk langsung keluar, dan stok biji kopi berkurang otomatis. Tutup shift nggak perlu hitung manual lagi.' },
+      { name: 'Budi Santoso', role: 'Pemilik kedai kopi', tool: 'nota-pos', text: 'Kasir jadi cepat, struk langsung keluar, dan stok biji kopi berkurang otomatis. Laporan penjualan tiap bulan langsung jadi, nggak perlu hitung manual lagi.' },
       { name: 'Dewi Lestari', role: 'Pemilik salon', tool: 'booking-hub', text: 'Jadwal pelanggan dan terapis nggak bentrok lagi. Pelanggan juga senang karena bisa pilih jam sendiri.' },
       { name: 'Hendra Wijaya', role: 'Distributor sembako', tool: 'akunting-umkm', text: 'Laporan laba-rugi dan piutang akhirnya rapi tiap bulan. Saya bisa lihat posisi keuangan tanpa menunggu akhir tahun.' },
       { name: 'Sari Puspita', role: 'Usaha laundry kiloan', tool: 'order-hub', text: 'Status cucian pelanggan bisa dicek kapan saja. Nggak ada lagi telepon tanya sudah selesai atau belum.' },
@@ -122,7 +123,7 @@ const id: Content = {
     login: 'Sudah punya akses? Masuk',
     desc: {
       'prospek-hub': 'Catat tiap prospek, ingatkan follow-up, sampai tagihan lunas. Sales lihat datanya sendiri, pemilik usaha lihat semuanya.',
-      'nota-pos': 'Kasir di HP atau laptop: buka shift, checkout cepat, cetak struk, dan stok berkurang otomatis.',
+      'nota-pos': 'Kasir di HP atau laptop: checkout cepat, cetak struk, laporan penjualan, dan stok berkurang otomatis.',
     },
   },
   custom: {
@@ -158,6 +159,17 @@ const id: Content = {
       { title: 'AI Video Sosmed Generator', tag: 'AI · kredit', desc: 'Video pendek untuk media sosial, lengkap dengan hook, caption, dan CTA. Bayar per video dengan kredit.', cta: 'Coba AI Video' },
     ],
   },
+  newsletter: {
+    eyebrow: 'Newsletter',
+    title: 'Tips praktis merapikan kerja dan usaha, langsung ke email kamu.',
+    lead: 'Satu langkah kecil yang bisa kamu coba minggu itu, plus kabar tool baru. Kami kirim sesekali saja, tanpa spam.',
+    label: 'Alamat email',
+    placeholder: 'email@usahakamu.com',
+    submit: 'Daftar',
+    note: 'Untuk sementara, pendaftaran dikirim lewat aplikasi email kamu.',
+    mailSubject: 'Daftar newsletter Kreasi Digital Hub',
+    mailBody: 'Halo Kreasi Digital Hub,\n\nSaya ingin berlangganan newsletter.\n\nEmail: {email}\n\nTerima kasih.',
+  },
   finalCta: {
     title: 'Online tools praktis untuk urusan kerja dan usaha kamu.',
     lead: 'Mulai dari satu tool, tambah yang lain kapan saja.',
@@ -192,7 +204,7 @@ const id: Content = {
     kelas: { name: 'Kelas & Siswa', desc: 'Jadwal, absensi, kurikulum, dan pembayaran les.' },
     event: { name: 'Event & Tiket', desc: 'Jual tiket, data peserta, dan check-in.' },
     'dashboard-tim': { name: 'Dashboard Tim Internal', desc: 'Tugas, progres, dan laporan mingguan tim.' },
-    'nota-pos': { name: 'Kasir Digital Nota POS', short: 'Kasir Digital', desc: 'Kasir, cetak struk, dan shift harian.' },
+    'nota-pos': { name: 'Kasir Digital Nota POS', short: 'Kasir Digital', desc: 'Kasir, cetak struk, dan laporan penjualan.' },
     invoice: { name: 'Invoice & Pembayaran', desc: 'Invoice, PO, kuitansi, dan pengingat tagihan.' },
     ulasan: { name: 'Permintaan Ulasan', desc: 'Kirim link lewat WhatsApp, kumpulkan rating dan cerita.' },
     'testimonial-wall': { name: 'Testimonial Wall', desc: 'Tampilkan ulasan asli di website kamu.' },
@@ -226,7 +238,7 @@ const en: Content = {
     points: ['Pay once, no subscription', 'One account for every tool', 'Works on your phone'],
     mockHello: 'Hi, Rina',
     mockSub: 'Kreasi Digital Hub dashboard · 4 active tools',
-    mockStates: { 'prospek-hub': '12 active leads', 'nota-pos': 'Today’s shift', 'content-planner': '3 posts this week', 'akunting-umkm': 'October report' },
+    mockStates: { 'prospek-hub': '12 active leads', 'nota-pos': 'Sales report', 'content-planner': '3 posts this week', 'akunting-umkm': 'October report' },
     mockAdd: '+ Add another tool to your dashboard',
     mockAddLink: 'Open catalog',
   },
@@ -297,7 +309,7 @@ const en: Content = {
     login: 'Already have access? Log in',
     desc: {
       'prospek-hub': 'Log every lead, get follow-up reminders, and track invoices until they’re paid. Sales staff see their own data; the owner sees everything.',
-      'nota-pos': 'A cashier on your phone or laptop: open a shift, check out fast, print receipts, and stock updates itself.',
+      'nota-pos': 'A cashier on your phone or laptop: fast checkout, printed receipts, sales reports, and stock that updates itself.',
     },
   },
   custom: {
@@ -333,6 +345,17 @@ const en: Content = {
       { title: 'AI Video Sosmed Generator', tag: 'AI · credits', desc: 'Short social media videos complete with hook, caption and CTA. Pay per video with credits.', cta: 'Try AI Video' },
     ],
   },
+  newsletter: {
+    eyebrow: 'Newsletter',
+    title: 'Practical tips for tidier work and business, straight to your inbox.',
+    lead: 'One small step you can try that week, plus news about new tools. We write only now and then, no spam.',
+    label: 'Email address',
+    placeholder: 'email@yourbusiness.com',
+    submit: 'Sign up',
+    note: 'For now, sign-ups are sent through your email app.',
+    mailSubject: 'Kreasi Digital Hub newsletter sign-up',
+    mailBody: 'Hi Kreasi Digital Hub,\n\nI’d like to subscribe to the newsletter.\n\nEmail: {email}\n\nThank you.',
+  },
   finalCta: {
     title: 'Practical online tools for your work and business.',
     lead: 'Start with one tool, add more any time.',
@@ -367,7 +390,7 @@ const en: Content = {
     kelas: { name: 'Classes & Students', desc: 'Schedules, attendance, curriculum and tuition payments.' },
     event: { name: 'Events & Tickets', desc: 'Ticket sales, attendee data and check-in.' },
     'dashboard-tim': { name: 'Internal Team Dashboard', desc: 'Tasks, progress and weekly team reports.' },
-    'nota-pos': { name: 'Nota POS Digital Cashier', short: 'Digital Cashier', desc: 'Cashier, receipt printing and daily shifts.' },
+    'nota-pos': { name: 'Nota POS Digital Cashier', short: 'Digital Cashier', desc: 'Cashier, receipt printing and sales reports.' },
     invoice: { name: 'Invoices & Payments', desc: 'Invoices, purchase orders, receipts and payment reminders.' },
     ulasan: { name: 'Review Requests', desc: 'Send a link on WhatsApp, collect ratings and stories.' },
     'testimonial-wall': { name: 'Testimonial Wall', desc: 'Show real reviews on your website.' },
@@ -389,7 +412,7 @@ function id_testimonials_en() {
   // PLACEHOLDER — fictional examples, English versions of the Indonesian placeholders.
   return [
     { name: 'Rina Anggraeni', role: 'Property agent', tool: 'prospek-hub', text: 'My leads used to live only in WhatsApp chats and I often forgot to follow up. Now every buyer has their own notes, and reminders show up on time.' },
-    { name: 'Budi Santoso', role: 'Coffee shop owner', tool: 'nota-pos', text: 'Checkout is fast, receipts print right away, and coffee bean stock updates itself. No more counting by hand at the end of a shift.' },
+    { name: 'Budi Santoso', role: 'Coffee shop owner', tool: 'nota-pos', text: 'Checkout is fast, receipts print right away, and coffee bean stock updates itself. Monthly sales reports are ready on their own, no more counting by hand.' },
     { name: 'Dewi Lestari', role: 'Salon owner', tool: 'booking-hub', text: 'Customer and therapist schedules no longer clash. Customers like being able to pick their own time.' },
     { name: 'Hendra Wijaya', role: 'Grocery distributor', tool: 'akunting-umkm', text: 'Profit and loss and receivables are finally tidy every month. I can see where the money stands without waiting for year-end.' },
     { name: 'Sari Puspita', role: 'Laundry business', tool: 'order-hub', text: 'Customers can check their laundry status any time. No more calls asking whether it’s ready.' },

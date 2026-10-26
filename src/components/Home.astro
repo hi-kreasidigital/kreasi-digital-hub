@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import Eyebrow from './Eyebrow.astro';
 import { content } from '../data/content';
 import { tools, categoryOrder, industryOrder, industryTools, journey, featured, type Lang } from '../data/tools';
 import { flags, contact } from '../data/site';
@@ -20,7 +21,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 <section class="hero">
   <div class="container hero-grid">
     <div class="hero-copy">
-      <span class="eyebrow">{t.hero.eyebrow}</span>
+      <Eyebrow text={t.hero.eyebrow} />
       <h1>{t.hero.title}</h1>
       <p class="lead">{t.hero.lead}</p>
       <div class="btn-row">
@@ -56,7 +57,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 <section class="section bg-mist" aria-labelledby="journey-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">{t.journey.eyebrow}</span>
+      <Eyebrow text={t.journey.eyebrow} />
       <h2 class="h2" id="journey-title">{t.journey.title}</h2>
       <p class="lead">{t.journey.lead}</p>
     </div>
@@ -83,7 +84,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
   <div class="container">
     <div class="catalog-head">
       <div class="section-head">
-        <span class="eyebrow">{t.catalog.eyebrow}</span>
+        <Eyebrow text={t.catalog.eyebrow} />
         <h2 class="h2" id="catalog-title">{t.catalog.title}</h2>
       </div>
       <label class="search">{t.catalog.searchLabel}
@@ -129,7 +130,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 <section class="section bg-ocean on-dark" id="cara-kerja" aria-labelledby="how-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">{t.how.eyebrow}</span>
+      <Eyebrow text={t.how.eyebrow} dark />
       <h2 class="h2" id="how-title">{t.how.title}</h2>
       <p class="lead">{t.how.lead}</p>
     </div>
@@ -145,7 +146,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 <section class="section bg-mist" id="industri" aria-labelledby="industry-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">{t.industries.eyebrow}</span>
+      <Eyebrow text={t.industries.eyebrow} />
       <h2 class="h2" id="industry-title">{t.industries.title}</h2>
       <p class="lead">{t.industries.lead}</p>
     </div>
@@ -168,7 +169,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
   <section class="section" aria-labelledby="stories-title">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">{t.testimonials.eyebrow}</span>
+        <Eyebrow text={t.testimonials.eyebrow} />
         <h2 class="h2" id="stories-title">{t.testimonials.title}</h2>
       </div>
       <div class="quotes" id="quotes">
@@ -192,10 +193,10 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 )}
 
 <!-- BEST-SELLERS -->
-<section class="section bg-sky" aria-labelledby="featured-title">
+<section class="section bg-ocean on-dark" aria-labelledby="featured-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">{t.featured.eyebrow}</span>
+      <Eyebrow text={t.featured.eyebrow} dark />
       <h2 class="h2" id="featured-title">{t.featured.title}</h2>
     </div>
     <div class="featured">
@@ -225,7 +226,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
   <div class="container custom-grid">
     <div class="custom-copy">
       <div class="section-head">
-        <span class="eyebrow">{t.custom.eyebrow}</span>
+        <Eyebrow text={t.custom.eyebrow} />
         <h2 class="h2" id="custom-title">{t.custom.title}</h2>
         <p class="lead">{t.custom.lead}</p>
       </div>
@@ -269,7 +270,7 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
 <section class="section" id="produk-lainnya" aria-labelledby="other-title">
   <div class="container">
     <div class="section-head">
-      <span class="eyebrow">{t.other.eyebrow}</span>
+      <Eyebrow text={t.other.eyebrow} />
       <h2 class="h2" id="other-title">{t.other.title}</h2>
     </div>
     <div class="others">
@@ -282,6 +283,26 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
         </article>
       ))}
     </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section bg-sky" id="newsletter" aria-labelledby="newsletter-title">
+  <div class="container newsletter">
+    <div class="newsletter-copy">
+      <Eyebrow text={t.newsletter.eyebrow} />
+      <h2 class="h2" id="newsletter-title">{t.newsletter.title}</h2>
+      <p class="lead">{t.newsletter.lead}</p>
+    </div>
+    <form class="newsletter-form" id="newsletter-form" data-email={contact.email} data-subject={t.newsletter.mailSubject} data-body={t.newsletter.mailBody}>
+      <img class="newsletter-motif" src={`${base}/images/motifs/mercusuar-navy.svg`} alt="" width="56" height="56" />
+      <div class="newsletter-row">
+        <label class="sr-only" for="newsletter-email">{t.newsletter.label}</label>
+        <input type="email" id="newsletter-email" name="email" placeholder={t.newsletter.placeholder} autocomplete="email" required />
+        <button class="btn btn-primary" type="submit">{t.newsletter.submit}</button>
+      </div>
+      <p class="note">{t.newsletter.note}</p>
+    </form>
   </div>
 </section>
 
@@ -340,6 +361,16 @@ const initials = (n: string) => n.split(' ').map((w) => w[0]).slice(0, 2).join('
     document.querySelectorAll<HTMLElement>('#quotes .quote').forEach((el, i) => (el.hidden = !open && i >= 3));
     qMore.setAttribute('aria-expanded', String(open));
     qMore.textContent = open ? qMore.dataset.less! : qMore.dataset.more!;
+  });
+
+  // ---- Newsletter: email sign-up request (until Supabase is ready) ----
+  const nl = document.getElementById('newsletter-form') as HTMLFormElement | null;
+  nl?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = String(new FormData(nl).get('email') ?? '');
+    const ds = nl.dataset;
+    const body = (ds.body ?? '').replace('{email}', email);
+    window.location.href = `mailto:${ds.email}?subject=${encodeURIComponent(ds.subject ?? '')}&body=${encodeURIComponent(body)}`;
   });
 
   // ---- Custom form: open WhatsApp with the message filled in ----
